@@ -15,6 +15,8 @@ class CreateEspecialistasTable extends Migration
     {
         Schema::create('especialistas', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->foreignId('especialidad_id')->constrained('especialidades');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateEspecialistasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('especialistas');
+        Schema::dropIfExists('citas');
     }
 }

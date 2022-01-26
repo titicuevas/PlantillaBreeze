@@ -19,9 +19,9 @@ class CreateCitasTable extends Migration
             $table->timestamp('fecha_hora');
             $table->foreignId('user_id')->nullable()->constrained();
             $table->timestamps();
-            $table->unique(['especialista_id','fecha_hora']);
-
+            $table->unique(['especialista_id', 'fecha_hora']);
         });
+
     }
 
     /**
