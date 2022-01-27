@@ -22,11 +22,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
-Route::get('/citas',[CitasController::class,'index'])
-->middleware(['auth'])->name('ver-citas');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/citas', [CitasController::class, 'index'])->name('ver-citas');
+    Route::get('/cita/create',[CitasController::class ,'create'])->name('crear-cita');
 
-Route::get('/cita/create',[CitasController::class,'create'])
-->middleware(['auth'])->name('crear-cita');
+
+
+    Route::delete('/cita/{id}', [CitasController::class, 'destroy'])->name('anular-cita');
+
+});
