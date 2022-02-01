@@ -28,6 +28,6 @@ class CreateEspecialistasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('citas');
+        Schema::dropIfExists('especialistas');
     }
 }

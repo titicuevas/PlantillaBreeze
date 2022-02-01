@@ -14,7 +14,9 @@ class CreateCompaniaUserTable extends Migration
     public function up()
     {
         Schema::create('compania_user', function (Blueprint $table) {
-            $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('compania_id')->constrained();
+            $table->primary(['user_id','compania_id']);
             $table->timestamps();
         });
     }

@@ -5,6 +5,13 @@ use Illuminate\Database\Eloquent\Model;
 class Cita extends Model
 {
     use HasFactory;
+
+    protected $cast = [
+        'fecha_hora' => 'datetime',
+
+
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

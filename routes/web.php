@@ -33,4 +33,17 @@ Route::middleware(['auth'])->group(function () {
 
     Route::delete('/cita/{cita}', [CitasController::class, 'destroy'])->name('anular-cita');
 
+
+
+    Route::get('/cita/create',[CitasController::class,'create'])->name('crear-cita-compania');
+
+    Route::get('/cita/create/{compania}/{especialidad}',[CitasController::class,'createEspecialista'])->name('crear-cita-especialista');
+
+    Route::get('/cita/create/{compania}/{especialidad}/{especialista}', [CitasController::class, 'createFechaHora'])
+    ->name('crear-cita-fecha-hora');
+
+
+
+
+
 });

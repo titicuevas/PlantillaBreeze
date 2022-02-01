@@ -14,7 +14,9 @@ class CreateCompaniaEspecialistaTable extends Migration
     public function up()
     {
         Schema::create('compania_especialista', function (Blueprint $table) {
-            $table->id();
+           $table->foreignId('especialista_id')->constrained();
+           $table->foreignId('compania_id')->constrained();
+           $table->primary(['especialista_id','compania_id']);
             $table->timestamps();
         });
     }
