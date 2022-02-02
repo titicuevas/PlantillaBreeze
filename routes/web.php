@@ -27,7 +27,7 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/citas', [CitasController::class, 'index'])->name('ver-citas');
-    Route::get('/cita/create',[CitasController::class ,'create'])->name('crear-cita');
+    Route::get('/cita/create', [CitasController::class, 'create'])->name('crear-cita');
 
 
 
@@ -35,15 +35,13 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-    Route::get('/cita/create',[CitasController::class,'create'])->name('crear-cita-compania');
+    Route::get('/cita/create', [CitasController::class, 'create'])->name('crear-cita-compania');
 
-    Route::get('/cita/create/{compania}/{especialidad}',[CitasController::class,'createEspecialista'])->name('crear-cita-especialista');
+    Route::get('/cita/create/{compania}/{especialidad}', [CitasController::class, 'createEspecialista'])->name('crear-cita-especialista');
 
-    Route::get('/cita/create/{compania}/{especialidad}/{especialista}', [CitasController::class, 'createFechaHora'])
+    Route::get('/cita/create/{compania}/{especialidad}/{especialista:id}', [CitasController::class, 'createFechaHora'])
+    ->where('especialista', '[0-9]+')
     ->name('crear-cita-fecha-hora');
 
-
-
-
-
+    Route::get('/cita/create/{compania}/{cita}/confirmar', [CitasController::class, 'createConfirmar'])->name('crear-cita-confirmar');
 });

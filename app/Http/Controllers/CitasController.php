@@ -51,12 +51,17 @@ class CitasController extends Controller
 
     public function createEspecialista(Compania $compania, Especialidad  $especialidad)
     {
+        $especialistas = Especialista::all()->filter(function ($value,$key)use($especialidad,$compania){
+            return $value->especialidad == $especialidad && $value->companias->contains($compania);
+        });
+
+
         return view(
             'citas.create-especialista',
             [
                 'compania' => $compania,
                 'especialidad' => $especialidad,
-                'especialistas' => $especialidad->especialistas,
+                'especialistas' => $especialistas,
 
             ]
         );
@@ -70,6 +75,15 @@ class CitasController extends Controller
             'especialidad' => $especialidad,
             'especialista' => $especialista,
             'citas' => $especialista->citas()->where('user_id', null)->get(),
+        ]);
+    }
+
+
+    public function createConfirmar(Compania $compania, Cita $cita)
+    {
+        return view ('cita.create-confirmar',[
+                'compania' => $compania,
+                    'cita'=>$cita,
         ]);
     }
 }
