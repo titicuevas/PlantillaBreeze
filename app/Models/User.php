@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const TIPO_NORMAL = 'N';
+    const TIPO_ADMIN = 'A';
+    const TIPO_ESPEC = 'E';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -42,7 +46,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     public function companias()
     {
         return $this->belongsToMany(Compania::class);
@@ -51,5 +54,20 @@ class User extends Authenticatable
     public function citas()
     {
         return $this->hasMany(Cita::class);
+    }
+
+    public function especialista()
+    {
+        return $this->hasOne(Especialista::class);
+    }
+
+    public function esAdmin()
+    {
+        return $this->tipo == self::TIPO_ADMIN;
+    }
+
+    public function esEspecialista()
+    {
+        return $this->especialista !== null;
     }
 }
